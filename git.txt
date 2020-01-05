@@ -1,0 +1,70 @@
+git init -  현재디렉토리를 깃 전용 디렉터리로 설정
+
+git add 파일을 준비영역으로 옮긴다.
+
+git commit 준비영역의 파일을 로컬 저장소에 저장한다.
+커밋시 변경내용을 요약 빈칸 변경한 이유를 남겨주는게 좋다
+
+git log = 로컬 저장소에 저장한 이력을 조회할수있다.
+
+git remote 로컬 저장소와 원격저장소를 연결
+git remote add origin 깃허브 원격저장소 주소
+git remote -v 원격저장소 확인
+
+/ 원격저장소에 저장한다.
+git push -u origin master
+ 
+// 에러 - ! [rejected] master -> master (fetch first)
+// 이미 변경된 파일이 원격저장소에 있을경우 발생
+git pull origin master 
+ 
+// 에러 - ! [rejected] master -> master (non-fast-forward)
+git push origin +master
+
+
+브랜치 - 유저의 개념?
+
+1) 브랜치 보기
+$git branch
+
+2) 브랜치 생성
+$git branch [브랜치명]
+
+3) 브랜치 수정
+$git branch -m [브랜치명] [바꿀이름]
+
+4) 브랜치 삭제
+$git branch -d [브랜치명]
+
+워킹 디렉터리의 소스를 특정 커밋 또는 특정 브랜치로 변경한다.
+
+1) 특정 브랜치로 워킹 디렉터리 변경
+$git checkout [브랜치명]
+
+2) 특정 커밋으로 워킹 디렉터리 변경
+$git checkout [Commit ID]
+
+
+3) 특정 파일을 해당 브랜치 또는 커밋 상태로 변경 (원복)
+$git checkout [돌아갈 Commit ID] -- [파일 경로]
+*충돌 방지를 위해 브랜치명을 확인하고, 파일 추가 및 수정한 뒤 커밋해야 한다.
+
+4) 브랜치 생성 및 체크아웃을 같이 할 경우
+$git checkout -b develop
+
+git merge
+다른 두개의 브랜치 소스를 병합한다.
+
+$git checkout master
+$git merge develop
+
+
+
+pull  = 업데이트 개념?
+원격저장소에서 바뀐내용을 나의 로컬저장소에 업데이트한다
+내가 pull을 실행후 다른사람이 push를 하여 저장소를 업데이트 한경우 내 push요청은 거부된다.
+이럴경우 merge를 이용해 다른 사람의 업데이트 이력을 내 저장소에도 갱신해야한다.
+만약 병합하지 않은채로 이력을 덮어쓰게 되면 다른사람이 push한 내역이 사라진다.
+
+만약 두사람이 업데이트한 소스가 같은파일에 위치해있다면 충돌이 나게된다.
+이부분은 직접 수정해주어야 한다.
